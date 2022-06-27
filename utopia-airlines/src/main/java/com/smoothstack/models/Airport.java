@@ -69,4 +69,10 @@ public class Airport {
     public String getFlightNumber() {
         return flightNumber;
     }
+
+    @Override
+    public String toString() {
+        //Need to convert this to JSON
+        return "";
+    }
 }
