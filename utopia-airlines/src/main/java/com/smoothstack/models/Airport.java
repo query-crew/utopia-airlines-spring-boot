@@ -3,7 +3,7 @@ package com.smoothstack.models;
 import java.sql.Timestamp;
 
 public class Airport {
-    private int flightId;
+    private int airportId;
     private Timestamp departTime;
     private int seatsAvailable;
     private float price;
@@ -13,8 +13,8 @@ public class Airport {
     public Airport() {
 
     }
-    public Airport(int _flightId, Timestamp _departTime, int _seatsAvailable, float _price, Timestamp _arrivalTime, String _flightNumber) {
-        flightId = _flightId;
+    public Airport(int _airportId, Timestamp _departTime, int _seatsAvailable, float _price, Timestamp _arrivalTime, String _flightNumber) {
+        airportId = _airportId;
         departTime = _departTime;
         seatsAvailable = _seatsAvailable;
         price = _price;
@@ -23,11 +23,11 @@ public class Airport {
     }
 
     public void setFlightId(int _id) {
-        flightId = _id;
+        airportId = _id;
     }
 
     public int getFlightId() {
-        return flightId;
+        return airportId;
     }
 
     public void setDepartTime(Timestamp _departTime) {
