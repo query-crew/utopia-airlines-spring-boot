@@ -11,14 +11,13 @@ import com.smoothstack.Users.services.UserService;
 public class UserController {
     @RequestMapping("/users")
     public String getAllUsers() throws SQLException{
-        String tableName = "users";
-        return UserService.getAllUsers(tableName).toString();
+        return UserService.getAllUsers().toString();
     }
     
 
     @RequestMapping("/users/{userId}")
     public String getUserById(int userId, String tableName) throws SQLException {
         tableName = "users";
-        return UserService.getUserById(userId, tableName).toString();
+        return UserService.getUserById(userId).toString();
     }
 }
