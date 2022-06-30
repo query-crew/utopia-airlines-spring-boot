@@ -1,0 +1,6 @@
+com/smoothstack/Users/interfaces/UserRepository.class
+com/smoothstack/Users/models/User.class
+com/smoothstack/Users/services/UserService.class
+com/smoothstack/Users/connector/DBConnection.class
+com/smoothstack/Users/controllers/UserController.class
+com/smoothstack/utopiaairlines/UtopiaAirlinesApplication.class
