@@ -1,15 +1,17 @@
 package com.smoothstack.utopiaairlines;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.smoothstack.services.UserService;
+import com.smoothstack.Users.models.User;
+import com.smoothstack.Users.services.UserService;
 import java.util.*;
 import org.junit.jupiter.api.*;
 
 @SpringBootTest
 class UtopiaAirlinesApplicationTests {
-
+/* 
 	@Autowired
 	UserService service;
 
@@ -34,4 +36,5 @@ class UtopiaAirlinesApplicationTests {
 		User userTwo = new User(rd.nextInt(100 - 1 + 1) + 1,"fakeUserName", "fake.email@smoothstack.com", "password", "users");
 		service.addUser(userTwo);
 	}
+	*/
 }
