@@ -40,7 +40,7 @@ public class AirportService {
             Airport airport;
             //Using root password is a really bad idea, but it took me an hour to reset it, so there.
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia_schema", "root", "root");
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM airports WHERE flightId = " + _airportId);
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM airports WHERE airportId = " + _airportId);
             ResultSet results = stmt.executeQuery();
             if(results.next()) {
                 airport = new Airport(results.getInt(0), results.getString(1), results.getString(2), results.getString(3));
