@@ -1,10 +1,11 @@
-package com.smoothstack.models;
+package com.smoothstack.Users.models;
 
 public class User {
     private Integer id;
     private String userName;
     private String email;
     private String password;
+
 
     public User(int id, String userName, String email, String password){
         this.id = id;

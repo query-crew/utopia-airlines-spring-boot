@@ -2,6 +2,7 @@ package com.smoothstack.utopiaairlines;
 
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,15 @@ class UtopiaAirlinesApplicationTests {
 	@Autowired
 	private BookingService service;
 	
+	@BeforeEach
+	void setUp() {
+		if (service.bookingExists()) {
+			service.removeAllBookings();
+		}
+		if (service.travelerExists()) {
+			service.removeAllTravelers();
+		}
+	}
 	@Test
 	public void contextLoads() {
 		Assertions.assertNotNull(controller);
@@ -32,8 +42,6 @@ class UtopiaAirlinesApplicationTests {
 		Booking b = new Booking(1, "STRIPE", 1, 4);
 		service.addBooking(b);
 		Assertions.assertNotNull(b.getBookingId());
-		
-		service.removeAllBookings();
 	}
 	
 	@Test
@@ -41,7 +49,24 @@ class UtopiaAirlinesApplicationTests {
 		Traveler t = new Traveler("Billy Bob", "123 Road", "123456789", "email@email.com", LocalDateTime.of(2020,  1, 14, 10, 30));
 		service.addTraveler(t);
 		Assertions.assertNotNull(t.getTravelerId());
-		
-		service.removeAllTravelers();
+	}
+	
+	@Test
+	public void findBooking() {
+		Booking b = new Booking(1, "STRIPE2", 1, 4);
+		service.addBooking(b);
+		int bId = b.getBookingId();
+		Booking b2 = service.getBooking(bId);
+		Assertions.assertEquals(b2.toString(), b.toString());
+
+	}
+	
+	@Test
+	public void findTraveler() {
+		Traveler t = new Traveler("Billy Milly", "123 Road", "123456789", "email@email.com", LocalDateTime.of(2020,  1, 14, 10, 30));
+		service.addTraveler(t);
+		int tId = t.getTravelerId();
+		Traveler t2 = service.getTraveler(tId);
+		Assertions.assertEquals(t.toString(), t2.toString());
 	}
 }

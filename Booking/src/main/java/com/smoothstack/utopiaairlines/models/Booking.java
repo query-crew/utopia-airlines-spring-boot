@@ -7,8 +7,7 @@ import lombok.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-@Table(name = "tbl_bookings")
+@Table(name = "tbl_booking")
 public class Booking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,10 @@ public class Booking {
 	
 	@Column(name = "seatId")
 	private int seatId;
+	
+	public Booking() {
+		//idk why lombok doesnt work
+	}
 	
 	public Booking(int isActive, String stripeId, int bookerId, int seatId) {
 		super();

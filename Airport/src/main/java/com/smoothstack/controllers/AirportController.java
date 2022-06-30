@@ -18,5 +18,4 @@ public class AirportController {
     public String mainRoute() {
         return "Airport Microservice";
     }
-
 }
