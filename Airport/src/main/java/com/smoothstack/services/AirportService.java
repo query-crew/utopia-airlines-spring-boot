@@ -4,8 +4,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.smoothstack.models.Airport;
 
+@Component
 public class AirportService {
 
     public static void createAirportTable(String tableName) {
