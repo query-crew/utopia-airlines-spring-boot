@@ -1,6 +1,8 @@
 package com.smoothstack.Users.controllers;
 
 import java.sql.SQLException;
+
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +18,14 @@ public class UserController {
     
 
     @RequestMapping("/users/{userId}")
-    public String getUserById(int userId, String tableName) throws SQLException {
-        tableName = "users";
+    public String getUserById(@PathVariable int userId, String tableName) throws SQLException {
+        tableName = "tbl_users";
         return UserService.getUserById(userId).toString();
     }
+
+    @RequestMapping("/")
+        public String Hello() throws SQLException {
+            return "Hello from user microservice";
+        }
+    
 }
