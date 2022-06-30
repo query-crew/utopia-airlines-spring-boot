@@ -11,5 +11,4 @@ public class AirportController {
     public String getAirportById(int _airportId) {
         return AirportService.getAirportById(_airportId).toString();
     }
-
 }

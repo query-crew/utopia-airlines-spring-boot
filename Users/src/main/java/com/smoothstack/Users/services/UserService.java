@@ -1,9 +1,9 @@
-package com.smoothstack.services;
+package com.smoothstack.Users.services;
 
 import java.sql.*;
 import java.util.*;
-import com.smoothstack.connector.DBConnection;
-import com.smoothstack.models.User;
+import com.smoothstack.Users.connector.DBConnection;
+import com.smoothstack.Users.models.User;
 
 
 public class UserService {

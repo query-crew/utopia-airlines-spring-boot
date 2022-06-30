@@ -1,4 +1,4 @@
-package com.smoothstack.models;
+package com.smoothstack.Users.models;
 
 public class User {
     private Integer id;

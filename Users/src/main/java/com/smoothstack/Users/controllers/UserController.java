@@ -1,10 +1,10 @@
-package com.smoothstack.controllers;
+package com.smoothstack.Users.controllers;
 
 import java.sql.SQLException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smoothstack.services.UserService;
+import com.smoothstack.Users.services.UserService;
 
 
 @RestController
