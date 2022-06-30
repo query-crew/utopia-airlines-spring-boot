@@ -1,74 +1,54 @@
 package com.smoothstack.models;
 
-import java.sql.Timestamp;
-
 public class Airport {
     private int airportId;
-    private Timestamp departTime;
-    private int seatsAvailable;
-    private float price;
-    private Timestamp arrivalTime;
-    private String flightNumber;
+    private String city;
+    private String name;
+    private String iataIdent;
 
     public Airport() {
 
     }
-    public Airport(int _airportId, Timestamp _departTime, int _seatsAvailable, float _price, Timestamp _arrivalTime, String _flightNumber) {
+    public Airport(int _airportId, String _city, String _name, String _iataIdent) {
         airportId = _airportId;
-        departTime = _departTime;
-        seatsAvailable = _seatsAvailable;
-        price = _price;
-        arrivalTime = _arrivalTime;
-        flightNumber = _flightNumber;
+        city = _city;
+        name = _name;
+        iataIdent = _iataIdent;
+        
     }
 
-    public void setFlightId(int _id) {
+    public void setAirportId(int _id) {
         airportId = _id;
     }
 
-    public int getFlightId() {
+    public int getAirportId() {
         return airportId;
     }
 
-    public void setDepartTime(Timestamp _departTime) {
-        departTime = _departTime;
+    public String getCity() {
+        return city;
     }
 
-    public Timestamp getDepartTime() {
-        return departTime;
+    public void setCity(String _city) {
+        city = _city;
     }
 
-    public void setSeatsAvailable(int _seatsAvailable) {
-        seatsAvailable = _seatsAvailable;
+    public String getName() {
+        return name;
     }
 
-    public int getSeatsAvailable() {
-        return seatsAvailable;
+    public void setName(String _name) {
+        name = _name;
     }
 
-    public void setPrice(float _price) {
-        price = _price;
+    public String getIataIdent() {
+        return iataIdent;
     }
 
-    public float getPrice() {
-        return price;
+    public void setIataIdent(String _iataIdent) {
+        iataIdent = _iataIdent;
     }
 
-    public void setArrivalTime(Timestamp _arrivalTime) {
-        arrivalTime = _arrivalTime;
-    }
-
-    public Timestamp getArrivalTime() {
-        return arrivalTime;
-    }
-
-    public void setFlightNumber(String _flightNumber) {
-        flightNumber = _flightNumber;
-    }
-
-    public String getFlightNumber() {
-        return flightNumber;
-    }
 
     @Override
     public String toString() {
