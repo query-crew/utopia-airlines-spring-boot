@@ -1,17 +1,17 @@
-package com.smoothstack.services;
+package com.smoothstack.Users.services;
 
 import java.sql.*;
 import java.util.*;
-import com.smoothstack.connector.DBConnection;
-import com.smoothstack.models.User;
+import com.smoothstack.Users.connector.DBConnection;
+import com.smoothstack.Users.models.User;
 
 
 public class UserService {
-    public static List<User> getAllUsers(String tableName) throws SQLException {
+    public static List<User> getAllUsers() throws SQLException {
 
         List<User> list = new ArrayList<>();
 
-        String query = "SELECT * FROM " + tableName;
+        String query = "SELECT * FROM users";
         Statement st = DBConnection.getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         try {
@@ -33,17 +33,20 @@ public class UserService {
         return list;
     }
 
-    public static List<User> getUserById(int userId, String tableName) throws SQLException {
+    public static User getUserById(int userId) throws SQLException {
 
-        List<User> list = new ArrayList<>();
+        User user = null;
 
-        String query = "SELECT * FROM " + tableName + "WHERE userId =" + userId;
+        String query = "SELECT * FROM users WHERE userId =" + userId;
         Statement st = DBConnection.getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         try {
-            while (rs.next()) {
-                User user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
-                list.add(user);
+            if(rs.next()) {
+                user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                return user;
+            }else{
+                user = null;
+                return user;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,15 +57,17 @@ public class UserService {
                 DBConnection.closeConnection();
             } catch (SQLException e) {
                 e.printStackTrace();
+                return null;
             }
         }
-        return list;
+        return user;
+        
     }
 
-    public void addUser(int id, String username, String email, String password, String tableName) throws SQLException{
+    public static void addUser(int id, String username, String email, String password) throws SQLException{
 
         
-        String query = "INSERT INTO " + tableName +" (id, username, email, password) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)";
         PreparedStatement pst = null;
 
         try {
@@ -95,7 +100,7 @@ public class UserService {
         }
     }
 
-    public void deleteUserById(Integer userId, String tableName) {
+    public static void deleteUserById(Integer userId, String tableName) {
 
         
         String query = "DELETE FROM "+ tableName + " WHERE id = ?";
@@ -126,9 +131,9 @@ public class UserService {
         }
     }
 
-    public void updateUserById(int userId, String username, String email, String tableName) throws SQLException {
+    public static void updateUser(int userId, String username, String email) throws SQLException {
 
-        String query = "UPDATE "+ tableName + " SET userId = ?, username = ?, email = ? WHERE userId = ?";
+        String query = "UPDATE users SET userId = ?, username = ?, email = ? WHERE userId = ?";
         PreparedStatement pst = null;
 
         try {
@@ -161,5 +166,22 @@ public class UserService {
         }
 
     }
+
+    public static void createUserTable(String tableName) {
+        String query = "CREATE TABLE " + tableName + "(userId INT, userName VARCHAR(45), , password VARCHAR(100), PRIMARY KEY(userId))";
+        PreparedStatement pst = null;
+        try {
+            pst = DBConnection.getConnection().prepareStatement(query);
+    
+            if(pst.execute()) {
+                System.out.println("User Table Created: " + tableName);
+            }
+        }
+        catch(SQLException _ex) {
+            System.out.println(_ex.getMessage());
+        }
+    }
+
+    
 
 }
