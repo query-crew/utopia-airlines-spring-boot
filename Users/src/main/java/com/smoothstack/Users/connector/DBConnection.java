@@ -1,4 +1,4 @@
-package com.smoothstack.connector;
+package com.smoothstack.Users.connector;
 
 
 import java.sql.*;
