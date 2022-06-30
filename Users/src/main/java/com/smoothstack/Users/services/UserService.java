@@ -11,7 +11,7 @@ public class UserService {
 
         List<User> list = new ArrayList<>();
 
-        String query = "SELECT * FROM users";
+        String query = "SELECT * FROM tbl_users";
         Statement st = DBConnection.getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         try {
@@ -37,7 +37,7 @@ public class UserService {
 
         User user = null;
 
-        String query = "SELECT * FROM users WHERE userId =" + userId;
+        String query = "SELECT * FROM tbl_users WHERE userId =" + userId;
         Statement st = DBConnection.getConnection().createStatement();
         ResultSet rs = st.executeQuery(query);
         try {
@@ -67,7 +67,7 @@ public class UserService {
     public static void addUser(int id, String username, String email, String password) throws SQLException{
 
         
-        String query = "INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO tbl_users (id, username, email, password) VALUES (?, ?, ?, ?)";
         PreparedStatement pst = null;
 
         try {
@@ -133,7 +133,7 @@ public class UserService {
 
     public static void updateUser(int userId, String username, String email) throws SQLException {
 
-        String query = "UPDATE users SET userId = ?, username = ?, email = ? WHERE userId = ?";
+        String query = "UPDATE tbl_users SET userId = ?, username = ?, email = ? WHERE userId = ?";
         PreparedStatement pst = null;
 
         try {
