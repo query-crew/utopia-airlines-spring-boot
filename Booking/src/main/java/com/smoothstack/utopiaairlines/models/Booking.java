@@ -27,7 +27,7 @@ public class Booking {
 	private int seatId;
 	
 	public Booking() {
-		//idk why lombox doesnt work
+		//idk why lombok doesnt work
 	}
 	
 	public Booking(int isActive, String stripeId, int bookerId, int seatId) {
