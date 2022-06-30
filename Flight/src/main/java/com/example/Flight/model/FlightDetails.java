@@ -2,7 +2,7 @@ package com.example.Flight.model;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -23,6 +23,7 @@ public class FlightDetails {
     @Column(name="arriveCityId")
     private String arriveCityId;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "details")
     private Flight flight;
 

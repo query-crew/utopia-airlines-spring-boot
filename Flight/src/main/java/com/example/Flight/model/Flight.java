@@ -30,7 +30,7 @@ public class Flight {
     @Column(name="arrivalTime", columnDefinition = "TIMESTAMP")
     private LocalDateTime arrivalTime;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "flightNumber")
     private FlightDetails details;
 

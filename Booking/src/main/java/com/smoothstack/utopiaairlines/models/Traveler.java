@@ -29,12 +29,15 @@ public class Traveler {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "dob")
+	@Column(name = "dob", columnDefinition = "TIMESTAMP")
 	private LocalDateTime dob;
 	
-	public Traveler(int travelerId, String name, String address, String phone, String email, LocalDateTime dob) {
+	public Traveler() {
+		
+	}
+	
+	public Traveler(String name, String address, String phone, String email, LocalDateTime dob) {
 		super();
-		this.travelerId = travelerId;
 		this.name = name;
 		this.address = address;
 		this.phone = phone;
@@ -88,5 +91,11 @@ public class Traveler {
 
 	public void setDob(LocalDateTime dob) {
 		this.dob = dob;
+	}
+
+	@Override
+	public String toString() {
+		return "Traveler [travelerId=" + travelerId + ", name=" + name + ", address=" + address + ", phone=" + phone
+				+ ", email=" + email + ", dob=" + dob + "]";
 	}
 }

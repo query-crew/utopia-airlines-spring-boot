@@ -1,17 +1,15 @@
 package com.smoothstack.utopiaairlines;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.smoothstack.Users.services.UserService;
 import com.smoothstack.Users.models.User;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
-
 import java.util.*;
 import org.junit.*;
-
-
 
 @SpringBootTest
 class UtopiaAirlinesApplicationTests {
@@ -89,4 +87,5 @@ class UtopiaAirlinesApplicationTests {
 			fail();
 		}
 	}
+	*/
 }

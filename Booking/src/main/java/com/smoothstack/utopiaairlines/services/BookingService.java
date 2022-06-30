@@ -1,7 +1,5 @@
 package com.smoothstack.utopiaairlines.services;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,10 +81,10 @@ public class BookingService {
 	}
 	//Testing
 	public boolean bookingExists() {
-		return !(bookingRepo.count() == 0);
+		return (bookingRepo.count() != 0);
 	}
 	
 	public boolean travelerExists() {
-		return !(travelerRepo.count() == 0);
+		return (travelerRepo.count() != 0);
 	}
 }

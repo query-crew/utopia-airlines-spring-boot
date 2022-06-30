@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Getter
@@ -26,6 +27,7 @@ public class Seat {
 
     @ManyToOne
     @JoinColumn(name="flightId")
+    @JsonIgnore
     Flight flight;
 
     public Seat(String seatLocation, String seatClass) {
