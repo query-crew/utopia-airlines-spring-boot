@@ -24,8 +24,7 @@ public class Booking {
 	@Column(name = "bookerId")
 	private int bookerId;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "seatId")
+	@Column(name = "seatId")
 	private int seatId;
 	
 	public Booking(int isActive, String stripeId, int bookerId, int seatId) {
