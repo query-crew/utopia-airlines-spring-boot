@@ -4,13 +4,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare;
 import com.smoothstack.models.Airport;
 
 public class AirportService {
 
     public static void createAirportTable(String tableName) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia_schema", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia", "root", "root");
             PreparedStatement stmt = conn.prepareStatement("CREATE TABLE " + tableName + "(airportId INT, city VARCHAR(100), name VARCHAR(100), iataIdent VARCHAR(4), PRIMARY KEY(airportId));");
             
             if(stmt.execute()) {
@@ -24,7 +25,7 @@ public class AirportService {
 
     public static void dropAirportTable(String tableName) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia_schema", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "root");
             PreparedStatement stmt = conn.prepareStatement("DROP TABLE " + tableName);
             if(stmt.execute()) {
                 System.out.println("Airport Table Dropped: " + tableName);
@@ -35,12 +36,12 @@ public class AirportService {
         }
     }
 
-    public static Airport getAirportById(int _airportId) {
+    public static Airport getAirportById(String tableName, int _airportId) {
         try {
             Airport airport;
             //Using root password is a really bad idea, but it took me an hour to reset it, so there.
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia_schema", "root", "root");
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM airports WHERE airportId = " + _airportId);
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "root");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM " + tableName + " WHERE airportId = " + _airportId);
             ResultSet results = stmt.executeQuery();
             if(results.next()) {
                 airport = new Airport(results.getInt(0), results.getString(1), results.getString(2), results.getString(3));
@@ -64,7 +65,7 @@ public class AirportService {
 
     public static void createAirport(String tableName, Airport _airport) {
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia_schema", "root", "root");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "root");
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO " + tableName + "VALUES(" + 
                 _airport.getAirportId() + ", " +
                 _airport.getCity() + ", " + 
@@ -85,19 +86,38 @@ public class AirportService {
     }
 
     public static void updateAirport(String tableName, int airportId, Airport _airport) {
-
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "root");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE " + tableName + "WHERE airportId = " + airportId + "SET" +
+                    " airportId = " + _airport.getAirportId() +
+                    " city = " + _airport.getCity() +
+                    " name = " + _airport.getName() +
+                    " iataIdent = " + _airport.getIataIdent()
+                    );
+            stmt.executeQuery();
+        }
+        catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static void deleteAirport(String tableName, int airportId) {
-
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "root");
+            PreparedStatement stmt = conn.prepareStatement("DELETE FROM " + tableName + " WHERE airportId = " + airportId);
+            stmt.executeQuery();
+        }
+        catch(SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     public static List<Airport> getAllAirports() {
         List<Airport> airports = new ArrayList<Airport>();
         
         try {
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/utopia_schema", "root", "root");
-            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM airports");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/", "root", "root");
+            PreparedStatement stmt = conn.prepareStatement("SELECT * FROM utopia.tbl_airport");
             ResultSet results = stmt.executeQuery();
             if(results.next()) {
                 Airport airport = new Airport(results.getInt(0), results.getString(1), results.getString(2), results.getString(3));

@@ -1,4 +1,4 @@
-package com.smoothstack.utopiaairlines;
+package com.smoothstack.Users;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
