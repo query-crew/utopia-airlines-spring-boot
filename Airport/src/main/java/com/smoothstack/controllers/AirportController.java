@@ -1,26 +1,23 @@
 package com.smoothstack.controllers;
 
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.smoothstack.services.AirportService;
 import com.smoothstack.models.Airport;
 
 @RestController
 public class AirportController {
 
-    @RequestMapping("/airports/{airportId}")
+    @RequestMapping(path = "/airports/{airportId}", method = RequestMethod.GET)
     public String getAirportById(@PathVariable Integer airportId) {
         return AirportService.getAirportById("utopia.tbl_airport", airportId).toString();
     }
 
-    @RequestMapping
+    @RequestMapping(path = "/airports", method = RequestMethod.POST)
     public void postAirport(@RequestBody Airport airport) {
         AirportService.createAirport("utopia.tbl_airport", airport);
     }
 
-    @RequestMapping("/")
+    @RequestMapping(path = "/", method = RequestMethod.GET)
     public String mainRoute() {
         return "Airport Microservice";
     }
